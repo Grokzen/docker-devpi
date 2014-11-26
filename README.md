@@ -2,6 +2,10 @@
 
 Dockerfile for running devpi in a container.
 
+This image is designed to be runned on system startup to ensure it is allways enabled.
+
+To run it on startup use the following command `make -C /path/to/docker-devpi docker-run-d`
+
 
 
 ## Dependencies
@@ -37,3 +41,9 @@ There is 3 options to start the container.
 Devpi creates a user named `root` with empty password by default.
 
 To stop a container that is started as a daemon you must run `make docker-stop`. It will stop the image and remove the cid file from disk. It will not be possible to start the image x2 times if the cid file is still present.
+
+
+
+## Known issues
+
+If devpi-server is upgraded to a newer version the old repo files can't be used because import/export has to be done. Currently the only way to do this is to do it manually when upgrading the version.
